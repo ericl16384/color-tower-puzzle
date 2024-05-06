@@ -39,3 +39,47 @@ print()
 # Backtracking
 
 
+def print_grid(grid):
+    for row in grid:
+        line = ""
+        for v in row:
+            line += ".ROYGBP"[v]
+            line += " "
+        print(line)
+
+grid = []
+for y in range(6):
+    grid.append([0]*6)
+# grid[0][1] = 4
+
+def move_is_safe(grid, row, col, num):
+
+    # Check if we find the same num
+    # in the similar row , we
+    # return false
+    for x in range(6):
+        if grid[row][x] == num:
+            return False
+
+    # Check if we find the same num in
+    # the similar column , we
+    # return false
+    for x in range(6):
+        if grid[x][col] == num:
+            return False
+
+    return True
+
+def solve_puzzle(grid, row, col):
+    # check if finished puzzle
+    if row == 6 - 1 and col == 6:
+        return True
+    
+    # check if finished row
+    if col == 6:
+        row += 1
+        col = 0
+    
+    todo
+
+print_grid(grid)
