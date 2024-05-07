@@ -1,14 +1,28 @@
 # Game is called 36 Cube
 
 
-board_obstacles = (
-    (5, 4, 1, 2, 0, 3),
-    (1, 3, 0, 5, 2, 4),
-    (2, 0, 3, 1, 4, 5),
-    (4, 5, 2, 3, 1, 0),
-    (3, 1, 4, 0, 5, 2),
-    (0, 2, 5, 4, 3, 1),
-)
+board_obstacles = [
+    [5, 4, 1, 2, 0, 3],
+    [1, 3, 0, 5, 2, 4],
+    [2, 0, 3, 1, 4, 5],
+    [4, 5, 2, 3, 1, 0],
+    [3, 1, 4, 0, 5, 2],
+    [0, 2, 5, 4, 3, 1],
+]
+
+grid = []
+for y in range(6):
+    grid.append([0]*6)
+
+
+
+# sneaky trick that we had to look up :)
+board_obstacles[2][3], board_obstacles[4][3] = board_obstacles[4][3], board_obstacles[2][3]
+grid[2][3] = 2
+grid[4][3] = 3
+
+
+
 
 board_spaces = []
 for row in board_obstacles:
@@ -24,9 +38,9 @@ def list_product(arr):
     return out
 six_factorial = 1*2*3*4*5*6
 
-for i in range(6):
-    assert list_product(board_spaces[i]) == six_factorial
-    assert list_product([row[i] for row in board_spaces]) == six_factorial
+# for i in range(6):
+#     assert list_product(board_spaces[i]) == six_factorial
+#     assert list_product([row[i] for row in board_spaces]) == six_factorial
 
 
 for row in board_spaces:
@@ -48,10 +62,7 @@ def print_grid(height_map, grid):
             line += " "
         print(line)
 
-grid = []
-for y in range(6):
-    grid.append([0]*6)
-# grid[0][1] = 4
+
 
 def move_is_safe(height_map, remaining_pieces, grid, row, col, color):
 
